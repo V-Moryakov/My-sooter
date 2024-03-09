@@ -19,10 +19,29 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
+    {   //управление WSAD
+        MoveUpdate();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {   //Прыжок с рачетом свободного падения с правильной физикой
+        _characterController.Move(_moveVector * speed * Time.fixedDeltaTime);
+
+        _fallVelocity += gravity * Time.fixedDeltaTime;
+        _characterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
+
+        if(_characterController.isGrounded)
+        {
+            _fallVelocity = 0;
+        }
+    }
+
+    private void MoveUpdate()
     {
         _moveVector = Vector3.zero;
 
-        if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             _moveVector += transform.forward;
         }
@@ -46,14 +65,5 @@ public class PlayerController : MonoBehaviour
         {
             _fallVelocity = -jumpForce;
         }
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        _characterController.Move(_moveVector * speed * Time.fixedDeltaTime);
-
-        _fallVelocity += gravity * Time.fixedDeltaTime;
-        _characterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
     }
 }

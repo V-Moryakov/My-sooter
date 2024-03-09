@@ -18,7 +18,7 @@ public class CameraRotation : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {    // поворот камеры за мышкой
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse X"), 0);
 
         var newAngleX = CameraAxisTransform.localEulerAngles.x - Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse Y");
