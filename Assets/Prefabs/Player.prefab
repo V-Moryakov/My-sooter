@@ -174,6 +174,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3290361767079306980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993439387228751628}
+  m_Layer: 0
+  m_Name: Grenade Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1993439387228751628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290361767079306980}
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: -0.00000023841858, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7393971727599921561}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!1 &3536240448122565187
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,9 +308,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3823485304849337274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.862, y: 1.301, z: -0.013}
+  m_LocalPosition: {x: 0.492, y: 1.575, z: -0.013}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1993439387228751628}
   m_Father: {fileID: 7653770042234345006}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -751,6 +782,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &2479921174306820975
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419344608537116068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bee3f10c384d1254d84d6112d65c7280, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7653770041263352946
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +846,7 @@ GameObject:
   - component: {fileID: 7653770042234345040}
   - component: {fileID: 7678907935246327489}
   - component: {fileID: 88780034776098673}
+  - component: {fileID: 460306615670749203}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -853,6 +904,7 @@ MonoBehaviour:
   gravity: 9.8
   jumpForce: 10
   speed: 5
+  animator: {fileID: 2479921174306820975}
 --- !u!143 &7653770042234345040
 CharacterController:
   m_ObjectHideFlags: 0
@@ -868,7 +920,7 @@ CharacterController:
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7678907935246327489
@@ -900,6 +952,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 100
   valueRectTransform: {fileID: 0}
+  gamePlayUI: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  animator: {fileID: 2479921174306820975}
+--- !u!114 &460306615670749203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653770042234345005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b5ea2a1e8050642a9fa878c5b12a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: -2161507193427640389, guid: 5e287f359423fc5478a3ed90107f5603,
+    type: 3}
+  grenadeSourceTransform: {fileID: 1993439387228751628}
+  force: 500
 --- !u!1 &7653770042891459297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1435374349141713086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1167,6 +1238,12 @@ PrefabInstance:
 --- !u!4 &7907509712921306910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6760ccc2675c5f4459384ace07987210,
+    type: 3}
+  m_PrefabInstance: {fileID: 7653770042338525429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7419344608537116068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6760ccc2675c5f4459384ace07987210,
     type: 3}
   m_PrefabInstance: {fileID: 7653770042338525429}
   m_PrefabAsset: {fileID: 0}

@@ -9,9 +9,11 @@ public class EnemyAI : MonoBehaviour
     public PlayerController player;
     public float viewAngle;
     public float damage = 30;
+    public float attackDistance = 1;
+    public Animator animator;
 
     private NavMeshAgent _navMeshAgent;
-    private bool _isPlayerNoticed = false;
+    private bool _isPlayerNoticed;
     private PlayerHealth _playerHealth;
 
     // Start is called before the first frame update
@@ -33,6 +35,8 @@ public class EnemyAI : MonoBehaviour
 
     private void NoticePlayerUpdate()
     {
+        _isPlayerNoticed = false;
+        if (!_playerHealth.IsAlive()) return;
         var direction = player.transform.position - transform.position;
 
         if (Vector3.Angle(transform.forward, direction) < viewAngle)
@@ -85,9 +89,20 @@ public class EnemyAI : MonoBehaviour
         {
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                _playerHealth.DealDamage(damage * Time.deltaTime);
+                animator.SetTrigger("attack");
+
+                //перманентный урон в секунду
+                //_playerHealth.DealDamage(damage * Time.deltaTime);
             }
         }
 
+    }
+
+    public void AttackDamage()
+    {
+        if (!_isPlayerNoticed) return;
+        if (_navMeshAgent.remainingDistance > (_navMeshAgent.stoppingDistance + attackDistance)) return;
+
+        _playerHealth.DealDamage(damage);
     }
 }
