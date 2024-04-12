@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject gamePlayUI;
     public GameObject gameOverScreen;
+
     public Animator animator;
 
     private float _maxValue;
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void DealDamage(float damage)
     {
+        if()
         value -= damage;
         if (value <= 0)
         {

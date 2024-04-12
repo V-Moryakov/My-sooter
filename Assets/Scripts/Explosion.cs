@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     public float damage = 50;
-    public float maxSize = 5;
+    public float maxSize = 4;
     public float speed = 1;
 
     // Start is called before the first frame update
